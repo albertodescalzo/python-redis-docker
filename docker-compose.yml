@@ -1,8 +1,15 @@
 version: '3'
 services:
    redis: 
+      image: redislabs/redismod
+      ports:
+         - '6379:6379'
 
    web:
-
-    depends_on:
-    - redis
+      build: .
+      ports:
+         - '5001:5001'
+      volumes:
+        - .:/code
+      depends_on:
+         - redis
